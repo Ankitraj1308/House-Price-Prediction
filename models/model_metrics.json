@@ -1,0 +1,127 @@
+{
+    "best_model_name": "Gradient Boosting Regressor",
+    "metrics": {
+        "Linear Regression": {
+            "train_r2": 0.8660237052751942,
+            "test_r2": 0.8608003942531376,
+            "mae": 20225.437596556738,
+            "mse": 768900670.5441201,
+            "rmse": 27729.05823399201
+        },
+        "Decision Tree Regressor": {
+            "train_r2": 0.999983437292021,
+            "test_r2": 0.7517280006773295,
+            "mae": 27240.095890410958,
+            "mse": 1371386834.9863014,
+            "rmse": 37032.24048023966
+        },
+        "Random Forest Regressor": {
+            "train_r2": 0.9820958634401888,
+            "test_r2": 0.882805303526218,
+            "mae": 17618.845652327058,
+            "mse": 647351551.1730299,
+            "rmse": 25443.104196874836
+        },
+        "Gradient Boosting Regressor": {
+            "train_r2": 0.9750478381777045,
+            "test_r2": 0.9159335360610695,
+            "mae": 15020.136989642408,
+            "mse": 464360226.7844332,
+            "rmse": 21549.019160612235
+        }
+    },
+    "dataset_summary": {
+        "total_records": 1458,
+        "train_records": 1166,
+        "test_records": 292,
+        "numeric_features": [
+            "OverallQual",
+            "GrLivArea",
+            "BedroomAbvGr",
+            "FullBath",
+            "Floors",
+            "GarageCars",
+            "YearBuilt",
+            "TotalBsmtSF",
+            "LotArea",
+            "OverallCond"
+        ],
+        "categorical_features": [
+            "Neighborhood"
+        ],
+        "target": "SalePrice",
+        "neighborhoods": [
+            "Blmngtn",
+            "Blueste",
+            "BrDale",
+            "BrkSide",
+            "ClearCr",
+            "CollgCr",
+            "Crawfor",
+            "Edwards",
+            "Gilbert",
+            "IDOTRR",
+            "MeadowV",
+            "Mitchel",
+            "NAmes",
+            "NPkVill",
+            "NWAmes",
+            "NoRidge",
+            "NridgHt",
+            "OldTown",
+            "SWISU",
+            "Sawyer",
+            "SawyerW",
+            "Somerst",
+            "StoneBr",
+            "Timber",
+            "Veenker"
+        ]
+    },
+    "top_features": [
+        {
+            "feature": "OverallQual",
+            "importance": 0.5523587519563887
+        },
+        {
+            "feature": "GrLivArea",
+            "importance": 0.1779781018837025
+        },
+        {
+            "feature": "TotalBsmtSF",
+            "importance": 0.1154763818491744
+        },
+        {
+            "feature": "GarageCars",
+            "importance": 0.044834447255842715
+        },
+        {
+            "feature": "YearBuilt",
+            "importance": 0.04422413743332937
+        },
+        {
+            "feature": "LotArea",
+            "importance": 0.029324367418863753
+        },
+        {
+            "feature": "OverallCond",
+            "importance": 0.011710551640098321
+        },
+        {
+            "feature": "FullBath",
+            "importance": 0.005543989196221162
+        },
+        {
+            "feature": "Neighborhood_OldTown",
+            "importance": 0.0035870507983356064
+        },
+        {
+            "feature": "BedroomAbvGr",
+            "importance": 0.003490289414554871
+        }
+    ],
+    "currency_conversion": {
+        "usd_to_inr_rate": 83.5,
+        "note": "1 USD = \u20b983.5 (standard foreign exchange reference)"
+    }
+}

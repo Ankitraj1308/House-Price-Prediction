@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}House Details & Valuation Form | HousePrice.AI{% endblock %}
+
+{% block content %}
+<div class="py-5">
+    <div class="container">
+        
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white border border-success-subtle shadow-sm mb-2">
+                    <span class="badge bg-success rounded-pill px-2 py-1 small">AI Model: Gradient Boosting</span>
+                    <span class="small fw-bold text-navy">91.59% Test R² Accuracy</span>
+                </div>
+                <h2 class="fw-extrabold text-navy tracking-tight">House Price Prediction Form</h2>
+                <p class="text-muted small">
+                    Provide the property's physical and location parameters. The AI pipeline will compute the estimated selling price.
+                </p>
+
+                <!-- 1-Click Preset Filter Chips -->
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mt-3">
+                    <span class="small fw-bold text-navy me-1"><i class="bi bi-magic me-1 text-success"></i> Quick Presets:</span>
+                    <button type="button" class="preset-chip" data-preset="family">
+                        <span>🏡 Family Suburban</span>
+                    </button>
+                    <button type="button" class="preset-chip" data-preset="luxury">
+                        <span>🏰 Luxury Villa</span>
+                    </button>
+                    <button type="button" class="preset-chip" data-preset="starter">
+                        <span>🏠 Starter Cottage</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Form Glassmorphism Card -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+                <div class="glass-card p-4 p-md-5">
+                    
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center pb-3 mb-4 border-bottom border-subtle gap-2">
+                        <div>
+                            <h4 class="fw-bold text-navy mb-1"><i class="bi bi-houses text-success me-2"></i> House Details</h4>
+                            <span class="small text-muted">Fill in specifications or pick a preset above</span>
+                        </div>
+                        <div class="price-pill-banner py-2 px-3" style="font-size: 0.9rem;">
+                            <span class="pill-icon fs-6">🏡</span>
+                            <span>Live Estimator Active</span>
+                        </div>
+                    </div>
+
+                    <form action="{{ url_for('predict') }}" method="POST" id="predictionForm" class="needs-validation" novalidate>
+                        
+                        <!-- Section 1: Quality & Physical Size -->
+                        <div class="mb-4">
+                            <h6 class="text-xs text-uppercase fw-bold text-muted tracking-wider mb-3 pb-1 border-bottom border-subtle">
+                                <i class="bi bi-stars text-success me-1"></i> Quality & Structural Ratings
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-md-6 form-glass-group">
+                                    <label for="overall_qual">
+                                        Overall House Quality (1–10) <span class="text-danger">*</span>
+                                        <i class="bi bi-info-circle ms-1 text-muted" data-bs-toggle="tooltip" title="Rates material finish from 1 (Very Poor) to 10 (Very Excellent)."></i>
+                                    </label>
+                                    <select class="form-select form-select-glass" id="overall_qual" name="overall_qual" required>
+                                        <option value="10">10 - Very Excellent (Luxury Spec)</option>
+                                        <option value="9">9 - Excellent</option>
+                                        <option value="8">8 - Very Good</option>
+                                        <option value="7" selected>7 - Good (Above Average)</option>
+                                        <option value="6">6 - Above Average</option>
+                                        <option value="5">5 - Average Standard</option>
+                                        <option value="4">4 - Below Average</option>
+                                        <option value="3">3 - Fair</option>
+                                        <option value="2">2 - Poor</option>
+                                        <option value="1">1 - Very Poor</option>
+                                    </select>
+                                    <div class="text-xs text-muted mt-1">High predictive weight (55.2% of model score).</div>
+                                </div>
+
+                                <div class="col-md-6 form-glass-group">
+                                    <label for="overall_cond">
+                                        Overall Condition (1–10) <span class="text-danger">*</span>
+                                        <i class="bi bi-info-circle ms-1 text-muted" data-bs-toggle="tooltip" title="Current physical upkeep and maintenance status."></i>
+                                    </label>
+                                    <select class="form-select form-select-glass" id="overall_cond" name="overall_cond" required>
+                                        <option value="9">9 - Excellent Upkeep</option>
+                                        <option value="8">8 - Very Good</option>
+                                        <option value="7">7 - Good</option>
+                                        <option value="6">6 - Above Average</option>
+                                        <option value="5" selected>5 - Average Condition</option>
+                                        <option value="4">4 - Below Average</option>
+                                        <option value="3">3 - Fair Condition</option>
+                                    </select>
+                                    <div class="text-xs text-muted mt-1">Reflects maintenance and wear.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Areas & Dimensions -->
+                        <div class="mb-4">
+                            <h6 class="text-xs text-uppercase fw-bold text-muted tracking-wider mb-3 pb-1 border-bottom border-subtle">
+                                <i class="bi bi-bounding-box text-success me-1"></i> Area & Dimensions
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-md-4 form-glass-group">
+                                    <label for="gr_liv_area">Above Ground Living Area <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control form-control-glass" id="gr_liv_area" name="gr_liv_area" value="1750" min="300" max="10000" step="10" required>
+                                        <span class="input-group-text input-addon-glass">sq ft</span>
+                                    </div>
+                                    <div class="text-xs text-muted mt-1">Finished living space.</div>
+                                </div>
+
+                                <div class="col-md-4 form-glass-group">
+                                    <label for="total_bsmt_sf">Total Basement Area <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control form-control-glass" id="total_bsmt_sf" name="total_bsmt_sf" value="1000" min="0" max="8000" step="10" required>
+                                        <span class="input-group-text input-addon-glass">sq ft</span>
+                                    </div>
+                                    <div class="text-xs text-muted mt-1">0 if no basement.</div>
+                                </div>
+
+                                <div class="col-md-4 form-glass-group">
+                                    <label for="lot_area">Lot / Land Plot Area <span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control form-control-glass" id="lot_area" name="lot_area" value="9600" min="500" max="150000" step="50" required>
+                                        <span class="input-group-text input-addon-glass">sq ft</span>
+                                    </div>
+                                    <div class="text-xs text-muted mt-1">Total property plot size.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Bedrooms, Bathrooms, Floors & Garage -->
+                        <div class="mb-4">
+                            <h6 class="text-xs text-uppercase fw-bold text-muted tracking-wider mb-3 pb-1 border-bottom border-subtle">
+                                <i class="bi bi-door-open text-success me-1"></i> Rooms & Layout
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-6 col-md-3 form-glass-group">
+                                    <label for="bedroom_abv_gr">Bedrooms <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-glass" id="bedroom_abv_gr" name="bedroom_abv_gr" required>
+                                        <option value="1">1 Bed</option>
+                                        <option value="2">2 Beds</option>
+                                        <option value="3" selected>3 Beds</option>
+                                        <option value="4">4 Beds</option>
+                                        <option value="5">5 Beds</option>
+                                        <option value="6">6+ Beds</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-6 col-md-3 form-glass-group">
+                                    <label for="full_bath">Bathrooms <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-glass" id="full_bath" name="full_bath" required>
+                                        <option value="1">1 Bath</option>
+                                        <option value="2" selected>2 Baths</option>
+                                        <option value="3">3 Baths</option>
+                                        <option value="4">4+ Baths</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-6 col-md-3 form-glass-group">
+                                    <label for="floors">Floors / Stories <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-glass" id="floors" name="floors" required>
+                                        <option value="1.0" selected>1 Story (Single)</option>
+                                        <option value="1.5">1.5 Stories</option>
+                                        <option value="2.0">2 Stories (Double)</option>
+                                        <option value="2.5">2.5 Stories</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-6 col-md-3 form-glass-group">
+                                    <label for="garage_cars">Garage Capacity <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-glass" id="garage_cars" name="garage_cars" required>
+                                        <option value="0">No Garage</option>
+                                        <option value="1">1 Car</option>
+                                        <option value="2" selected>2 Cars</option>
+                                        <option value="3">3 Cars</option>
+                                        <option value="4">4 Cars</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Year Built & Location -->
+                        <div class="mb-4">
+                            <h6 class="text-xs text-uppercase fw-bold text-muted tracking-wider mb-3 pb-1 border-bottom border-subtle">
+                                <i class="bi bi-geo-alt text-success me-1"></i> Age & Geographic Location
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-md-6 form-glass-group">
+                                    <label for="year_built">Year Built <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control form-control-glass" id="year_built" name="year_built" value="2005" min="1870" max="2026" required>
+                                    <div class="text-xs text-muted mt-1">Original construction year.</div>
+                                </div>
+
+                                <div class="col-md-6 form-glass-group">
+                                    <label for="neighborhood">
+                                        Neighborhood Location <span class="text-danger">*</span>
+                                        <i class="bi bi-info-circle ms-1 text-muted" data-bs-toggle="tooltip" title="Physical location within Ames, Iowa. Highly influences location premium."></i>
+                                    </label>
+                                    <select class="form-select form-select-glass" id="neighborhood" name="neighborhood" required>
+                                        {% for n in neighborhoods %}
+                                            <option value="{{ n }}" {% if n == 'CollgCr' %}selected{% endif %}>{{ n }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="text-xs text-muted mt-1">e.g., StoneBr, NridgHt (Premium), CollgCr (Mid-range).</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Submit Strip -->
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3 pt-4 border-top border-subtle">
+                            <a href="{{ url_for('index') }}" class="btn btn-light border px-4 py-2 text-muted fw-semibold">
+                                <i class="bi bi-arrow-left me-1"></i> Back to Home
+                            </a>
+                            <button type="submit" class="btn btn-emerald-gradient btn-lg px-5 py-3 shadow" id="submitBtn">
+                                <i class="bi bi-calculator me-2"></i> Compute House Price Prediction
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

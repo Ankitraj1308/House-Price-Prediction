@@ -1,0 +1,426 @@
+/* ==========================================================================
+   AcrePredict AI - Modern Glassmorphism & Real Estate Design System
+   Inspired by contemporary SaaS & the modern reference aesthetic
+   ========================================================================== */
+
+:root {
+    --primary-navy: #0f2744;
+    --primary-blue: #1d4ed8;
+    --accent-green: #16a34a;
+    --accent-emerald: #10b981;
+    --accent-mint: #22c55e;
+    --accent-green-light: #dcfce7;
+    --accent-green-subtle: #f0fdf4;
+    
+    --bg-gradient: radial-gradient(at 10% 10%, #e0f2fe 0px, transparent 55%),
+                   radial-gradient(at 90% 15%, #dcfce7 0px, transparent 50%),
+                   radial-gradient(at 50% 90%, #f1f5f9 0px, transparent 60%),
+                   #f8fafc;
+    
+    --surface-glass: rgba(255, 255, 255, 0.88);
+    --surface-glass-card: rgba(255, 255, 255, 0.95);
+    --border-glass: rgba(255, 255, 255, 0.9);
+    --border-subtle: #e2e8f0;
+    
+    --shadow-soft: 0 10px 30px -10px rgba(15, 39, 68, 0.08);
+    --shadow-card: 0 20px 45px -15px rgba(15, 39, 68, 0.12), 0 0 1px rgba(15, 39, 68, 0.05);
+    --shadow-hover: 0 25px 50px -12px rgba(22, 163, 74, 0.2);
+    --shadow-float: 0 30px 60px -12px rgba(15, 39, 68, 0.18);
+
+    --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   Global Resets & Typography
+   -------------------------------------------------------------------------- */
+body {
+    font-family: var(--font-body);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, .brand-title {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+    color: var(--primary-navy);
+}
+
+.text-navy {
+    color: var(--primary-navy) !important;
+}
+
+.text-green-gradient {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-blue-gradient {
+    background: linear-gradient(135deg, #0f2744 0%, #1d4ed8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar - Clean Floating Glassmorphic
+   -------------------------------------------------------------------------- */
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    box-shadow: 0 4px 20px -2px rgba(15, 39, 68, 0.04);
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #ffffff;
+    box-shadow: 0 8px 16px -4px rgba(22, 163, 74, 0.4);
+}
+
+.brand-title {
+    font-size: 1.28rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary-navy);
+}
+
+.brand-subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.navbar .nav-link {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #475569;
+    padding: 0.55rem 1rem;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-blue);
+    background-color: rgba(224, 242, 254, 0.6);
+}
+
+.navbar .nav-link.active {
+    color: var(--accent-green);
+    background-color: var(--accent-green-light);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & Badges
+   -------------------------------------------------------------------------- */
+.btn-emerald-gradient {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: #ffffff !important;
+    font-weight: 700;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px -5px rgba(22, 163, 74, 0.45);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-emerald-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px -5px rgba(22, 163, 74, 0.55);
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.btn-navy-outline {
+    border: 2px solid var(--primary-navy);
+    color: var(--primary-navy);
+    font-weight: 700;
+    border-radius: 14px;
+    background: transparent;
+    transition: all 0.25s ease;
+}
+
+.btn-navy-outline:hover {
+    background: var(--primary-navy);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(15, 39, 68, 0.25);
+}
+
+/* Reference Image Predicted Price Pill */
+.price-pill-banner {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #15803d;
+    border-radius: 50px;
+    padding: 0.75rem 1.75rem;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-shadow: 0 10px 25px -8px rgba(34, 197, 94, 0.35);
+}
+
+.price-pill-banner .pill-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+}
+
+.price-pill-banner .pill-amount {
+    font-size: 1.35rem;
+    font-family: var(--font-heading);
+    color: #14532d;
+    font-weight: 800;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section
+   -------------------------------------------------------------------------- */
+.hero-wrapper {
+    padding: 3.5rem 0 4.5rem;
+    position: relative;
+}
+
+.hero-main-title {
+    font-size: 3.25rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--primary-navy);
+    margin-bottom: 1.25rem;
+}
+
+@media (max-width: 991px) {
+    .hero-main-title {
+        font-size: 2.35rem;
+    }
+}
+
+.hero-showcase-frame {
+    position: relative;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow-float);
+    transition: transform 0.3s ease;
+}
+
+.hero-showcase-frame:hover {
+    transform: translateY(-5px);
+}
+
+.hero-showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 26px;
+}
+
+/* --------------------------------------------------------------------------
+   Glassmorphism Cards
+   -------------------------------------------------------------------------- */
+.glass-card {
+    background: var(--surface-glass-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    box-shadow: 0 25px 50px -15px rgba(15, 39, 68, 0.15);
+}
+
+.feature-pill-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    height: 100%;
+}
+
+.feature-pill-card:hover {
+    transform: translateY(-6px);
+    border-color: #86efac;
+    box-shadow: var(--shadow-hover);
+}
+
+.icon-bubble {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.65rem;
+    margin-bottom: 1.25rem;
+}
+
+.bubble-blue { background: #dbeafe; color: #1d4ed8; }
+.bubble-green { background: #dcfce7; color: #15803d; }
+.bubble-purple { background: #f3e8ff; color: #7e22ce; }
+.bubble-amber { background: #fef3c7; color: #b45309; }
+
+/* --------------------------------------------------------------------------
+   Forms & Controls
+   -------------------------------------------------------------------------- */
+.form-glass-group label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 0.45rem;
+}
+
+.form-control-glass, .form-select-glass {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1e293b;
+    transition: all 0.2s ease;
+}
+
+.form-control-glass:focus, .form-select-glass:focus {
+    background: #ffffff;
+    border-color: var(--accent-mint);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+    outline: none;
+}
+
+.input-addon-glass {
+    background: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* Preset Chips */
+.preset-chip {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 50px;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.preset-chip:hover {
+    background: #f0fdf4;
+    border-color: var(--accent-mint);
+    color: #15803d;
+    transform: translateY(-2px);
+}
+
+.preset-chip.active {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   Result Card
+   -------------------------------------------------------------------------- */
+.result-card-showcase {
+    background: #ffffff;
+    border-radius: 28px;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-float);
+    overflow: hidden;
+}
+
+.result-card-header {
+    background: linear-gradient(135deg, #0f2744 0%, #1e3a8a 100%);
+    color: #ffffff;
+    padding: 2.25rem;
+}
+
+.result-hero-pill {
+    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+    border: 1.5px solid #86efac;
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: 0 15px 30px -10px rgba(34, 197, 94, 0.35);
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    color: #64748b;
+    padding: 3rem 0 2rem;
+}
+
+.footer-link {
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-green);
+}
+
+/* --------------------------------------------------------------------------
+   Dashboard & Chart Enhancements
+   -------------------------------------------------------------------------- */
+.stat-kpi-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease;
+}
+
+.stat-kpi-card:hover {
+    transform: translateY(-3px);
+}
+
+.chart-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.eda-thumbnail {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.eda-thumbnail:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-card);
+}

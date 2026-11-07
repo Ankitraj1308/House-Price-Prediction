@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+
+{% block title %}House Price Prediction using Machine Learning | Portfolio Showcase{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-wrapper">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            
+            <!-- Left Column: Headline & Call to Action -->
+            <div class="col-lg-6">
+                <!-- Top Badge -->
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white border border-success-subtle shadow-sm mb-3">
+                    <span class="badge bg-success rounded-pill px-2 py-1 small">91.6% Accuracy</span>
+                    <span class="small fw-bold text-navy">Trained on Ames Housing Real Estate Data</span>
+                </div>
+
+                <!-- Main Reference Headline -->
+                <h1 class="hero-main-title">
+                    House Price Prediction <br>
+                    <span class="text-green-gradient">using Machine Learning</span>
+                </h1>
+
+                <p class="lead text-muted mb-4" style="font-size: 1.15rem; line-height: 1.6;">
+                    An AI-powered property appraisal system that evaluates structural, spatial, and geographic attributes using a fine-tuned <strong>Gradient Boosting Regressor</strong> to deliver instant, unbiased market valuations.
+                </p>
+
+                <!-- Hero Actions -->
+                <div class="d-flex flex-wrap gap-3 mb-4 pb-2">
+                    <a href="{{ url_for('predict') }}" class="btn btn-emerald-gradient btn-lg px-4 py-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-calculator-fill fs-5"></i>
+                        <span>Start Valuation Calculator</span>
+                    </a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-navy-outline btn-lg px-4 py-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-speedometer2 fs-5"></i>
+                        <span>View ML Dashboard</span>
+                    </a>
+                </div>
+
+                <!-- Trusted AI Appraisal Highlights -->
+                <div class="p-3 bg-white rounded-4 border border-subtle shadow-xs d-flex align-items-center gap-3">
+                    <div class="brand-icon" style="width: 44px; height: 44px; font-size: 1.25rem;">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold text-navy small">Multi-Factor Real-Estate Valuation</div>
+                        <div class="text-xs text-muted">Evaluates 11 architectural & geographic dimensions with zero data leakage.</div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Strip -->
+                <div class="row g-3 mt-4 pt-3 border-top border-subtle">
+                    <div class="col-4">
+                        <div class="fs-3 fw-bold text-navy">91.59%</div>
+                        <div class="text-xs text-muted fw-semibold">Test R² Score</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="fs-3 fw-bold text-navy">1,458</div>
+                        <div class="text-xs text-muted fw-semibold">Properties Analyzed</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="fs-3 fw-bold text-navy">4 Regressors</div>
+                        <div class="text-xs text-muted fw-semibold">Empirical Comparison</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: High-Res 3D House & Live Interactive Valuation Card -->
+            <div class="col-lg-6">
+                <div class="glass-card p-3 p-md-4 shadow-card">
+                    <!-- Image with floating location badge overlay -->
+                    <div class="position-relative rounded-4 overflow-hidden mb-3">
+                        <img src="{{ url_for('static', filename='images/house_3d_render.jpg') }}" 
+                             alt="High Resolution 3D Isometric Modern House" 
+                             class="img-fluid w-100 rounded-4 shadow-xs"
+                             style="max-height: 330px; width: 100%; object-fit: cover;">
+                        <div class="position-absolute top-0 start-0 m-3">
+                            <span class="badge bg-white text-navy border shadow-sm px-3 py-2 rounded-pill fw-bold">
+                                <i class="bi bi-geo-alt-fill text-danger me-1"></i> Ames, IA • College Creek
+                            </span>
+                        </div>
+                        <div class="position-absolute top-0 end-0 m-3">
+                            <span class="badge bg-success text-white shadow-sm px-3 py-2 rounded-pill fw-bold">
+                                <i class="bi bi-stars me-1"></i> 4K 3D Render
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Live Specification Badges -->
+                    <div class="p-3 bg-white rounded-4 border border-subtle mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-xs text-uppercase fw-bold text-muted">Sample Property Attributes</span>
+                            <span class="badge bg-light text-navy border">Grade 8 (Very Good)</span>
+                        </div>
+                        <div class="row g-2 text-center small">
+                            <div class="col-3">
+                                <div class="p-2 rounded-3 bg-light border border-light-subtle">
+                                    <div class="text-xs text-muted">Living Area</div>
+                                    <strong class="text-navy">2,150 sq ft</strong>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-2 rounded-3 bg-light border border-light-subtle">
+                                    <div class="text-xs text-muted">Rooms</div>
+                                    <strong class="text-navy">3 Bed • 2 Bath</strong>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-2 rounded-3 bg-light border border-light-subtle">
+                                    <div class="text-xs text-muted">Basement</div>
+                                    <strong class="text-navy">1,100 sq ft</strong>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-2 rounded-3 bg-light border border-light-subtle">
+                                    <div class="text-xs text-muted">Built Year</div>
+                                    <strong class="text-navy">2012</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Signature Reference Green Price Banner -->
+                    <div class="price-pill-banner w-100 justify-content-between p-3 rounded-4 mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="pill-icon fs-2">🏡</span>
+                            <div class="d-flex flex-column text-start">
+                                <span class="text-xs text-uppercase fw-bold text-success" style="line-height: 1;">Estimated Market Value</span>
+                                <span class="pill-amount fs-3 text-navy">₹ 2.05 Cr <span class="fs-6 text-muted fw-normal">($245,000 USD)</span></span>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('predict') }}" class="btn btn-sm btn-emerald-gradient px-3 py-2 rounded-pill fw-bold text-nowrap">
+                            Calculate Yours <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+
+                    <!-- Tech Badges Footer -->
+                    <div class="d-flex flex-wrap justify-content-between align-items-center pt-2 border-top border-subtle small text-muted">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-success-subtle text-success rounded-pill fw-semibold">Scikit-Learn 1.9</span>
+                            <span class="badge bg-primary-subtle text-primary rounded-pill fw-semibold">Gradient Boosting</span>
+                        </div>
+                        <span class="fw-semibold text-navy"><i class="bi bi-patch-check-fill text-success me-1"></i> 91.59% Test R²</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 4-Phase Machine Learning Architecture -->
+<section class="py-5 bg-white border-top border-bottom border-subtle">
+    <div class="container py-3">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill mb-2">
+                End-to-End Pipeline
+            </span>
+            <h2 class="fw-bold tracking-tight text-navy">How AI & Machine Learning Predicts Values</h2>
+            <p class="text-muted">
+                Unlike static valuation algorithms, our machine learning pipeline models non-linear relationships across construction materials, square footage, age, and location.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Phase 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-pill-card">
+                    <div class="icon-bubble bubble-blue">
+                        <i class="bi bi-database-check"></i>
+                    </div>
+                    <span class="badge bg-light text-primary border rounded-pill px-2 py-1 small fw-bold mb-2">Step 1</span>
+                    <h5 class="fw-bold text-navy mb-2">Data Cleansing</h5>
+                    <p class="text-muted small mb-0">
+                        1,458 verified properties are cleaned. Extreme non-arm's length sales outliers are filtered to prevent model distortion.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Phase 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-pill-card">
+                    <div class="icon-bubble bubble-green">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <span class="badge bg-light text-success border rounded-pill px-2 py-1 small fw-bold mb-2">Step 2</span>
+                    <h5 class="fw-bold text-navy mb-2">Leakage Prevention</h5>
+                    <p class="text-muted small mb-0">
+                        Median numerical imputation, Standard scaling, and One-Hot encoding are fitted exclusively on training sets.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Phase 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-pill-card">
+                    <div class="icon-bubble bubble-purple">
+                        <i class="bi bi-cpu-fill"></i>
+                    </div>
+                    <span class="badge bg-light text-purple border rounded-pill px-2 py-1 small fw-bold mb-2">Step 3</span>
+                    <h5 class="fw-bold text-navy mb-2">Model Benchmark</h5>
+                    <p class="text-muted small mb-0">
+                        Trained 4 distinct algorithms. Gradient Boosting won with a <strong>91.59% Test R²</strong> and an MAE of only $15,020.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Phase 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-pill-card">
+                    <div class="icon-bubble bubble-amber">
+                        <i class="bi bi-currency-rupee"></i>
+                    </div>
+                    <span class="badge bg-light text-warning-emphasis border rounded-pill px-2 py-1 small fw-bold mb-2">Step 4</span>
+                    <h5 class="fw-bold text-navy mb-2">Dual Currency</h5>
+                    <p class="text-muted small mb-0">
+                        Transparent conversion to Indian Rupees (₹) with explicit exchange rate citation ($1 = ₹83.5) and dual figures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Model Comparison Benchmark Banner -->
+<section class="py-5">
+    <div class="container py-2">
+        <div class="glass-card p-4 p-md-5">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5">
+                    <span class="badge bg-success-subtle text-success fw-bold px-3 py-1 rounded-pill mb-2">Empirical Benchmark</span>
+                    <h3 class="fw-bold text-navy mb-3">Model Accuracy on Unseen Test Partition</h3>
+                    <p class="text-muted mb-4 small">
+                        We evaluated 4 regression architectures using an 80:20 train-test split. The winner is selected strictly on unseen test performance.
+                    </p>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-navy-outline fw-semibold px-4 py-2">
+                        Open Full ML Dashboard <i class="bi bi-arrow-right ms-1 text-success"></i>
+                    </a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="table-responsive rounded-4 border overflow-hidden bg-white shadow-xs">
+                        <table class="table table-hover align-middle mb-0 small">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-3">Algorithm</th>
+                                    <th>Test R²</th>
+                                    <th>MAE ($)</th>
+                                    <th>RMSE ($)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-success fw-semibold">
+                                    <td class="ps-3">
+                                        <i class="bi bi-trophy-fill text-warning me-1"></i>
+                                        <strong>Gradient Boosting</strong>
+                                    </td>
+                                    <td class="text-success fw-bold">91.59%</td>
+                                    <td>$15,020</td>
+                                    <td>$21,549</td>
+                                    <td><span class="badge bg-success rounded-pill">Winning Model</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">Random Forest</td>
+                                    <td>88.28%</td>
+                                    <td>$17,619</td>
+                                    <td>$25,443</td>
+                                    <td><span class="badge bg-light text-muted border">Evaluated</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">Linear Regression</td>
+                                    <td>86.08%</td>
+                                    <td>$20,225</td>
+                                    <td>$27,729</td>
+                                    <td><span class="badge bg-light text-muted border">Evaluated</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-3">Decision Tree</td>
+                                    <td>75.17%</td>
+                                    <td>$27,240</td>
+                                    <td>$37,032</td>
+                                    <td><span class="badge bg-light text-muted border">Evaluated</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Card -->
+<section class="py-5 mb-4">
+    <div class="container">
+        <div class="glass-card text-center p-5 position-relative overflow-hidden border-success-subtle shadow-card" 
+             style="background: linear-gradient(135deg, rgba(220, 252, 231, 0.4) 0%, rgba(255, 255, 255, 0.95) 100%);">
+            <h2 class="display-6 fw-bold text-navy mb-3">Ready to Estimate a House Price?</h2>
+            <p class="text-muted max-w-600 mx-auto mb-4">
+                Input your house living area, lot size, bedrooms, bathrooms, and neighborhood to receive an instant machine learning valuation.
+            </p>
+            <a href="{{ url_for('predict') }}" class="btn btn-emerald-gradient btn-lg px-5 py-3 shadow-lg">
+                <i class="bi bi-calculator-fill me-2"></i> Open Prediction Form
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
